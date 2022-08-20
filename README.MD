@@ -2,7 +2,7 @@
 These scripts help to merge and split coco datasets exported from a supervisely project of different sub directories into train test val datasets for model training.
 
 ### Directory Structure Example
-
+```
 ├── <Folder exported from supervisely>
 │   ├── <batch 1>
 │   ├── <batch 2>
@@ -14,7 +14,7 @@ These scripts help to merge and split coco datasets exported from a supervisely 
 ├── notebook.ipynb
 ├── split_images.py
 └── test.sh
-
+```
 e.g 433981_damage-annotation folder contains the annotated images and JSON files of different batches exported from a supervisely project in coco format.
 
 ### Steps
@@ -49,7 +49,7 @@ Enter split size: 0.1
 ```
 ### Final COCO Dataset Directory
 The final coco dataset is stored in coco_data folder. The expected directory structure is:
-
+```
 ├── annotations
 │   ├── test.json
 │   ├── train.json
@@ -58,5 +58,5 @@ The final coco dataset is stored in coco_data folder. The expected directory str
     ├── test
     ├── train
     └── val
-
+```
 
