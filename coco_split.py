@@ -53,8 +53,10 @@ def read_json(json_path):
 
 def create_id_df(images, annotations,class_list):
     id_d = {}
+
     for i,im in enumerate(images):
         id = im['id']
+        
         cat = annotations[i]['category_id']
         id_d[id] = [cat]
         ann_im_id = annotations[i]['image_id']
@@ -102,30 +104,33 @@ def get_lists(data_list, coco):
     info_list = []
     ann_list = []
     for id in data_list:
-        # Get all the annotations for the specified image.
-        img_info = coco.loadImgs([id])[0]
+         # Get all the annotations for the specified image.
+        img_info = coco.loadImgs([id])
         ann_ids = coco.getAnnIds(imgIds=[id], iscrowd=None)
         anns = coco.loadAnns(ann_ids)
-        info_list.append(img_info)
-        ann_list.append(anns[0])
+        # print(anns)
+        info_list.append(img_info[0])
+        # print(anns)
+        ann_list.append(anns)
+    ann_list = sum(ann_list, [])
+    # print(info_list)
     return info_list, ann_list
 
 if __name__ == "__main__":
-    # json_path = args.source
-    # coco_annotation = COCO(annotation_file=json_path)
+
     # split train val data set
     train, val, coco_annotation, info, licenses, images, annotations, categories = main()
     images_with_annotations = funcy.lmap(lambda a: int(a['image_id']), annotations)
     train_ids = train.id.tolist()
     val_ids = val.id.tolist()
-    
     val_info_list, val_ann_list = get_lists(val_ids, coco_annotation)
     train_info_list, train_ann_list = get_lists(train_ids, coco_annotation)
-  
+    
     # save .json
     train_out_dir = 'annotations/train.json'
     val_out_dir = 'annotations/'+args.split+'.json'
     print("Saving coco json files")
+    # print(val_info_list)
     save_coco(train_out_dir, info, licenses, train_info_list, train_ann_list, categories)
     save_coco(val_out_dir, info, licenses, val_info_list, val_ann_list, categories)
-    print()
+
