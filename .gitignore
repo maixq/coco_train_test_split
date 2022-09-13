@@ -27,3 +27,11 @@ share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+
+README.MD
+data/
+coco_data/
+images/
+new_data/
+supervisely_data/
+*.json
