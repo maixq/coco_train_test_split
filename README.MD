@@ -22,9 +22,6 @@ e.g 433981_damage-annotation folder contains the annotated images and JSON files
 ```
 conda env create -f environment.yml
 conda activate my_env
-
-# install packages if haven't already installed 
-pip install tqdm numpy pandas funcy sklearn scikit-multilearn pycocotools
 ```
 2. Copy the folder exported from supervisely to current directory
 3. Navigate to the folder.
@@ -33,30 +30,6 @@ cd <path_of_supervisely_folder>
 ```
 4. Run test.sh 
 ```
-bash ../test.sh
-```
-
-5. Filter classes if necessary
-``` 
-1) dent                 3) scratch              5) reflection
-2) paint_deterioration  4) dirt                 6) crack
-Classes? You can select multiple space separated options: 1 2 3
-```
-
-6. Enter split size
-```
-Enter split size: 0.1
-```
-### Final COCO Dataset Directory
-The final coco dataset is stored in coco_data folder. The expected directory structure is:
-```
-├── annotations
-│   ├── test.json
-│   ├── train.json
-│   └── val.json
-└── images
-    ├── test
-    ├── train
-    └── val
+sh ../test.sh
 ```
 
